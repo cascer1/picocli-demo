@@ -67,7 +67,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.iodigital.javachapter.picoclidemo.Main</mainClass>
+                            <mainClass>com.iodigital.javachapter.picoclidemo.Demo</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
