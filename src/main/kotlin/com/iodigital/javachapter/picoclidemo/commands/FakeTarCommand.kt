@@ -7,7 +7,7 @@ import java.util.concurrent.Callable
 @Command(
     name = "tar",
     description = ["GNU 'tar' saves many files together into a single tape or disk archive."],
-    hkeaderHeading = "@|bold,underline Usage|@:%n%n",
+    headerHeading = "@|bold,underline Usage|@:%n%n",
     descriptionHeading = "%n@|bold,underline Description|@:%n%n",
     parameterListHeading = "%n@|bold,underline Parameters|@:%n",
     optionListHeading = "%n@|bold,underline Options|@:%n"
