@@ -7,7 +7,6 @@ import java.util.concurrent.Callable
     name = "hello",
     description = ["Say hello"],
     headerHeading = "@|bold,underline Usage|@:%n%n",
-    synopsisHeading = "%n",
     descriptionHeading = "%n@|bold,underline Description|@:%n%n",
     parameterListHeading = "%n@|bold,underline Parameters|@:%n",
     optionListHeading = "%n@|bold,underline Options|@:%n"

@@ -3,9 +3,14 @@ package com.iodigital.javachapter.picoclidemo.commands
 import picocli.CommandLine.*
 import java.util.concurrent.Callable
 
+
 @Command(
     name = "tar",
-    description = ["A command with many options"]
+    description = ["GNU 'tar' saves many files together into a single tape or disk archive."],
+    hkeaderHeading = "@|bold,underline Usage|@:%n%n",
+    descriptionHeading = "%n@|bold,underline Description|@:%n%n",
+    parameterListHeading = "%n@|bold,underline Parameters|@:%n",
+    optionListHeading = "%n@|bold,underline Options|@:%n"
 )
 class FakeTarCommand : Callable<Int> {
 
@@ -23,7 +28,7 @@ class FakeTarCommand : Callable<Int> {
     )
     lateinit var compressionMode: CompressionModeGroup
 
-    @Option(names = ["-h", "--help"], usageHelp = true, description = ["display this help message"])
+    @Option(names = ["?", "-h", "--help"], usageHelp = true, description = ["display this help message"])
     var usageHelpRequested: Boolean = false
 
     @Option(
@@ -32,6 +37,19 @@ class FakeTarCommand : Callable<Int> {
         required = true
     )
     lateinit var fileName: String
+
+    @Option(
+        names = ["-w", "--interactive", "--confirmation"],
+        description = ["Ask for confirmation for every action"]
+    )
+    var interactive = false
+
+    @Option(
+        names = ["-H", "--format"],
+        description = ["Create archive of the given format"],
+        defaultValue = "GNU"
+    )
+    var format = Formats.GNU
 
     @Parameters(
         arity = "1.."
@@ -101,6 +119,10 @@ class FakeTarCommand : Callable<Int> {
         }
     }
 
+    enum class Formats {
+        GNU, OLDGNU, PAX, POSIX, USTAR, V7
+    }
+
     override fun call(): Int {
         println(toString())
         return 0
@@ -112,6 +134,8 @@ class FakeTarCommand : Callable<Int> {
             Operation mode: $operationMode
             Compression mode:  $compressionMode
             Files: ${files.joinToString(", ")}
+            Interactive mode: $interactive
+            Format: $format
         """.trimIndent()
     }
 }
